@@ -114,7 +114,7 @@ class Chemical {
 		"Mt" => "266",
 	);
 	
-	function parseFormula($formula)
+	private function parseFormula($formula)
 	{
 		$elements = array();
 		$prev = '';
@@ -123,14 +123,14 @@ class Chemical {
 		{
 			$item = $formula[$i];
 			
-			if (intval($item)) 
+			if (is_numeric($item)) 
 			{
 				//Если цифра - сохраняем с цифрой
 				$elements[] = array($prev, $item);
 				$prev = '';
 			} 
 			//Если это первый символ элемента из двух символов
-			else if ($item === strtoupper($item) AND isset($formula[$i+1]) AND $formula[$i+1] !== strtoupper($formula[$i+1])) 
+			else if ($this->isUpper($item) AND isset($formula[$i+1]) AND $this->isLower($formula[$i+1]) AND !is_numeric($formula[$i+1])) 
 			{
 				if (!empty($prev)) 
 				{
@@ -142,7 +142,7 @@ class Chemical {
 				$prev = $item.$formula[$i+1];
 			}
 			//Если это одиночный либо последний
-			else if ($item === strtoupper($item) AND (isset($formula[$i+1]) AND $formula[$i+1] === strtoupper($formula[$i+1])) OR !isset($formula[$i+1])) 
+			else if ($this->isUpper($item) AND ((isset($formula[$i+1]) AND $this->isUpper($formula[$i+1])) OR !isset($formula[$i+1])))
 			{
 				if (!empty($prev)) 
 				{
@@ -164,7 +164,7 @@ class Chemical {
 		return $elements;
 	}
 	
-	function getMolarMass($formula) 
+	public function getMolarMass($formula) 
 	{
 		$molarMass = 0;
 		
@@ -178,6 +178,16 @@ class Chemical {
 		}
 		
 		return $molarMass;
+	}
+	
+	private function isUpper ($in_string)
+	{
+	    return($in_string === strtoupper($in_string) ? true : false);
+	}
+	
+	private function isLower ($in_string)
+	{
+	    return($in_string === strtolower($in_string) ? true : false);
 	}
 }
 ?>
