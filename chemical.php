@@ -1,7 +1,7 @@
 <?
 class Chemical {
 	
-	private $elements = array
+	private $mendeleevElements = array
 	(
 		"H"  => "1.00794",
 		"He" => "4.002602",
@@ -113,10 +113,23 @@ class Chemical {
 		"Hs" => "265",
 		"Mt" => "266",
 	);
+
+	private $formula;
+	private $elements = array();
+
+	function __construct($formula) 
+	{
+		$this->formula = $formula;
+		$this->parseFormula($formula);
+	}
 	
+	private function addElement($element, $count = 1)
+	{
+		$this->elements[] = array($element, $count);
+	}
+
 	private function parseFormula($formula)
 	{
-		$elements = array();
 		$saved = '';
 		
 		for ($i=0; $i<strlen($formula); $i++)
@@ -127,7 +140,7 @@ class Chemical {
 			if (is_numeric($current)) 
 			{
 				//Если цифра - сохраняем с цифрой
-				$elements[] = array($saved, $current);
+				$this->addElement($saved, $current);
 				$saved = '';
 			} 
 			//Если это первый символ элемента из двух символов
@@ -135,7 +148,7 @@ class Chemical {
 			{
 				if (!empty($saved)) 
 				{
-					$elements[] = array($saved, 1);
+					$this->addElement($saved);
 					$saved = '';
 				}
 				
@@ -147,7 +160,7 @@ class Chemical {
 			{
 				if (!empty($saved)) 
 				{
-					$elements[] = array($saved, 1);
+					$this->addElement($saved);
 					$saved = '';
 				}
 				
@@ -156,39 +169,35 @@ class Chemical {
 				//если совсем последний элемент, то сохраняем
 				if (!$next) 
 				{
-					$elements[] = array($saved, 1);
+					$this->addElement($saved);
 					$saved = '';
 				}
 			}
 		}
-		
-		return $elements;
 	}
 	
-	public function getMolarMass($formula) 
+	public function getMolarMass() 
 	{
 		$molarMass = 0;
-		
-		$parsed = $this->parseFormula($formula);
-		
-		foreach ($parsed as $item) 
+				
+		foreach ($this->elements as $item) 
 		{
 			$element = $item[0];
 			$count 	 = $item[1];
-			$molarMass += $this->elements[$element] * $count;
+			$molarMass += $this->mendeleevElements[$element] * $count;
 		}
 		
 		return $molarMass;
 	}
 	
-	private function isUpper ($in_string)
+	private function isUpper ($string)
 	{
-	    return($in_string === strtoupper($in_string) ? true : false);
+	    return($string === strtoupper($string) ? true : false);
 	}
 	
-	private function isLower ($in_string)
+	private function isLower ($string)
 	{
-	    return($in_string === strtolower($in_string) ? true : false);
+	    return($string === strtolower($string) ? true : false);
 	}
 }
 ?>

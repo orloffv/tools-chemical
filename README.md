@@ -1,3 +1,3 @@
 # Chemical utils
 
-- Molar Mass
+- Calculate Molar Mass

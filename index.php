@@ -1,8 +1,8 @@
 <?
 include('chemical.php');
 
-$him = new Chemical();	
-var_dump($him->getMolarMass('H2SO4'));
+$chemical = new Chemical('C5H5OH');	
+var_dump($chemical->getMolarMass());
 
 /*
 	3BeO.Al2O3.6(SiO2) = (BeO)3.Al2O3.6(SiO2)
