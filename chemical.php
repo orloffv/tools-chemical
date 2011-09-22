@@ -117,46 +117,47 @@ class Chemical {
 	private function parseFormula($formula)
 	{
 		$elements = array();
-		$prev = '';
+		$saved = '';
 		
 		for ($i=0; $i<strlen($formula); $i++)
 		{
-			$item = $formula[$i];
+			$current = $formula[$i];
+			$next = (isset($formula[$i+1])) ? $formula[$i+1] : FALSE;
 			
-			if (is_numeric($item)) 
+			if (is_numeric($current)) 
 			{
 				//Если цифра - сохраняем с цифрой
-				$elements[] = array($prev, $item);
-				$prev = '';
+				$elements[] = array($saved, $current);
+				$saved = '';
 			} 
 			//Если это первый символ элемента из двух символов
-			else if ($this->isUpper($item) AND isset($formula[$i+1]) AND $this->isLower($formula[$i+1]) AND !is_numeric($formula[$i+1])) 
+			else if ($this->isUpper($current) AND $next AND $this->isLower($next) AND !is_numeric($next)) 
 			{
-				if (!empty($prev)) 
+				if (!empty($saved)) 
 				{
-					$elements[] = array($prev, 1);
-					$prev = '';
+					$elements[] = array($saved, 1);
+					$saved = '';
 				}
 				
 				//замоминаем элемент из двух символов
-				$prev = $item.$formula[$i+1];
+				$saved = $current.$next;
 			}
 			//Если это одиночный либо последний
-			else if ($this->isUpper($item) AND ((isset($formula[$i+1]) AND $this->isUpper($formula[$i+1])) OR !isset($formula[$i+1])))
+			else if ($this->isUpper($current) AND (($next AND $this->isUpper($next)) OR !$next))
 			{
-				if (!empty($prev)) 
+				if (!empty($saved)) 
 				{
-					$elements[] = array($prev, 1);
-					$prev = '';
+					$elements[] = array($saved, 1);
+					$saved = '';
 				}
 				
-				$prev = $item;
+				$saved = $current;
 				
 				//если совсем последний элемент, то сохраняем
-				if (!isset($formula[$i+1])) 
+				if (!$next) 
 				{
-					$elements[] = array($prev, 1);
-					$prev = '';
+					$elements[] = array($saved, 1);
+					$saved = '';
 				}
 			}
 		}
