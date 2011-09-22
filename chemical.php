@@ -119,7 +119,7 @@ class Chemical {
 
 	function __construct($formula) 
 	{
-		$this->formula = $formula;
+		$this->formula = trim($formula);
 		$this->parseFormula($formula);
 	}
 	
@@ -139,8 +139,19 @@ class Chemical {
 			
 			if (is_numeric($current)) 
 			{
-				//Если цифра - сохраняем с цифрой
-				$this->addElement($saved, $current);
+				$num = $current;
+
+				if ($next AND is_numeric($current))
+				{
+					$num = 	$current.$next;					
+				}
+
+				if ($saved)
+				{
+					//Если цифра - сохраняем с цифрой
+					$this->addElement($saved, $num);
+				}
+
 				$saved = '';
 			} 
 			//Если это первый символ элемента из двух символов
