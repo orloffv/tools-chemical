@@ -1,0 +1,11 @@
+<?
+include('chemical.php');
+
+$him = new Chemical();	
+var_dump($him->getMolarMass('H2SO4'));
+/*
+	3BeO.Al2O3.6(SiO2) = (BeO)3.Al2O3.6(SiO2)
+	(BaH2O)2Mn5O10 = (BaH2O)2Mn5O10
+	(KMgCl3).6H2O = (KMgCl3).6H2O	
+*/
+?>
