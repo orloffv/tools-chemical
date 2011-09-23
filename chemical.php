@@ -117,10 +117,13 @@ class Chemical {
 	private $formula;
 	private $elements = array();
 
-	function __construct($formula) 
+	function __construct($formula = NULL) 
 	{
-		$this->formula = trim($formula);
-		$this->parseFormula($formula);
+		if ( ! is_null($formula))
+		{
+			$this->formula = trim($formula);
+			$this->parseFormula($formula);	
+		}
 	}
 	
 	public function getMendeleevElements()
@@ -142,6 +145,7 @@ class Chemical {
 			$current = $formula[$i];
 			$next = (isset($formula[$i+1])) ? $formula[$i+1] : FALSE;
 			
+			//Если число
 			if (is_numeric($current)) 
 			{
 				$num = $current;
@@ -188,10 +192,12 @@ class Chemical {
 					$this->addElement($saved);
 					$saved = '';
 				}
-			} 
+			}
+			//Если второй символ
 			else if($this->isLower($current))
 			{
-				if (!is_numeric($next) AND (!$next OR $this->isLower($next)))
+				//если это последний элемент или следущее НЕ число или следущая большая
+				if (!$next AND (!is_numeric($next) OR $this->isUpper($next)))
 				{
 					if (!empty($saved)) 
 					{

@@ -15,7 +15,7 @@
 <body>
 	<h1>Калькулятор</h1>
 
-	<form method="POST">
+	<form method="POST" novalidate="novalidate">
 	<ul>
 		<?php if ($molarMass):?>
 		<li>
