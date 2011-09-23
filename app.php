@@ -3,7 +3,7 @@ $molarMass = FALSE;
 $massa = FALSE;
 if (isset($_POST['formula']))
 {
-	if (floatval($_POST['formula']))
+	if (strlen(floatval($_POST['formula'])) == strlen($_POST['formula']))
 	{
 		$molarMass = floatval($_POST['formula']);
 	}

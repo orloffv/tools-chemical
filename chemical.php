@@ -141,7 +141,7 @@ class Chemical {
 			{
 				$num = $current;
 
-				if ($next AND is_numeric($current))
+				if ($next !== FALSE AND is_numeric($next))
 				{
 					$num = 	$current.$next;					
 				}
