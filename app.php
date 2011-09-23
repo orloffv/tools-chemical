@@ -3,10 +3,12 @@ $molarMass = FALSE;
 $massa = FALSE;
 if (isset($_POST['formula']))
 {
-	if (strlen(floatval($_POST['formula'])) == strlen($_POST['formula']))
+	//если число
+	if (is_numeric($_POST['formula']))
 	{
 		$molarMass = floatval($_POST['formula']);
 	}
+	//если формула
 	else
 	{
 		include('chemical.php');

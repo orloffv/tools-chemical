@@ -33,7 +33,7 @@
 	<ul class="form">
 		<li>
 			<select id="select-formula">
-				<option value="">вещества</option>
+				<option value="">Вещества</option>
 				<?php foreach ($selectFormula as $name => $formula):?>
 					<option value="<?=$formula?>"><?=$name?></option>
 				<?php endforeach;?>
