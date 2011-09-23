@@ -1,4 +1,4 @@
-<?
+<?php
 class Chemical {
 	
 	private $mendeleevElements = array
@@ -123,6 +123,11 @@ class Chemical {
 		$this->parseFormula($formula);
 	}
 	
+	public function getMendeleevElements()
+	{
+		return $this->mendeleevElements;
+	}
+
 	private function addElement($element, $count = 1)
 	{
 		$this->elements[] = array($element, $count);
@@ -164,7 +169,7 @@ class Chemical {
 				}
 				
 				//замоминаем элемент из двух символов
-				$saved = $current.$next;
+				$saved = $current;
 			}
 			//Если это одиночный либо последний
 			else if ($this->isUpper($current) AND (($next AND $this->isUpper($next)) OR !$next))
@@ -183,6 +188,22 @@ class Chemical {
 					$this->addElement($saved);
 					$saved = '';
 				}
+			} 
+			else if($this->isLower($current))
+			{
+				if (!is_numeric($next) AND (!$next OR $this->isLower($next)))
+				{
+					if (!empty($saved)) 
+					{
+						$this->addElement($saved.$current);
+						$saved = '';
+					}
+				}
+				else
+				{
+					$saved .= $current; 
+				}
+				
 			}
 		}
 	}
