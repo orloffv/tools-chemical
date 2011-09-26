@@ -1,25 +1,25 @@
 <?
 $molarMass = FALSE;
 $massa = FALSE;
-if (isset($_POST['formula']))
+if (isset($_REQUEST['formula']))
 {
     //если число
-    if (is_numeric($_POST['formula']))
+    if (is_numeric($_REQUEST['formula']))
     {
-        $molarMass = floatval($_POST['formula']);
+        $molarMass = floatval($_REQUEST['formula']);
     }
     //если формула
     else
     {
         include('chemical.php');
 
-        $chemical = new Chemical($_POST['formula']);    
+        $chemical = new Chemical($_REQUEST['formula']);    
         $molarMass = $chemical->getMolarMass(); 
     }
 
-    $x = floatval($_POST['x']); 
-    $y = floatval($_POST['y']);
-    $z = floatval($_POST['z']);
+    $x = floatval(isset($_REQUEST['x']) ? $_REQUEST['x'] : 0); 
+    $y = floatval(isset($_REQUEST['y']) ? $_REQUEST['y'] : 0);
+    $z = floatval(isset($_REQUEST['z']) ? $_REQUEST['z'] : 0);
 
     if ($x OR $y OR $z)
     {

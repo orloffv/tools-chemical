@@ -15,7 +15,7 @@
 <body>
     <h1>Калькулятор</h1>
 
-    <form method="POST" novalidate="novalidate">
+    <form method="GET" novalidate="novalidate">
     <ul>
         <?php if ($molarMass):?>
         <li>
@@ -35,21 +35,21 @@
             <select id="select-formula">
                 <option value="">Вещества</option>
                 <?php foreach ($selectFormula as $name => $formula):?>
-                    <option value="<?=$formula?>"><?=$name?></option>
+                    <option <?=(isset($_REQUEST['formula']) AND $_REQUEST['formula'] == $formula) ? 'selected=selected' : '';?> value="<?=$formula?>"><?=$name?></option>
                 <?php endforeach;?>
             </select>
         </li>
         <li>
-            <input type="url" name="formula" title="Формула" value="<?=isset($_POST['formula']) ? $_POST['formula'] : ''?>"/>
+            <input type="url" name="formula" title="Формула" value="<?=isset($_REQUEST['formula']) ? $_REQUEST['formula'] : ''?>"/>
         </li>
         <li>
-            <input type="number" name="x" title="Объем" value="<?=isset($_POST['x']) ? $_POST['x'] : ''?>"/>
+            <input type="number" name="x" title="Объем" value="<?=isset($_REQUEST['x']) ? $_REQUEST['x'] : ''?>"/>
         </li>
         <li>
-            <input type="number" name="y" title="N/M" value="<?=isset($_POST['y']) ? $_POST['y'] : ''?>"/>
+            <input type="number" name="y" title="N/M" value="<?=isset($_REQUEST['y']) ? $_REQUEST['y'] : ''?>"/>
         </li>
         <li>
-            <input type="number" name="z" title="z" value="<?=isset($_POST['z']) ? $_POST['z'] : ''?>"/>
+            <input type="number" name="z" title="z" value="<?=isset($_REQUEST['z']) ? $_REQUEST['z'] : ''?>"/>
         </li>
     </ul>
     <p>

@@ -2,7 +2,7 @@
     $.fn.hint = function() {
         $(this).closest('form').submit(function() 
         {
-            clear_form_nametitles($(this));
+            clear_form_nametitles($(this), true);
         });
         
         return $(this).each(function (){
@@ -26,13 +26,22 @@
         });
     }
     
-    clear_form_nametitles = function($this)
+    clear_form_nametitles = function($this, clear)
     {
         $('input, textarea', $this).each(function() 
         {
             if ($(this).attr('title') && $(this).val() == $(this).attr('title'))
             {
                 $(this).val('');
+                if (clear)
+                {
+                    $(this).attr('name', '');
+                }
+            }
+
+            if( ! $(this).val() && clear)
+            {
+                $(this).attr('name', '');
             }
         });
     }
@@ -41,21 +50,6 @@
 $(document).ready(function() { 
     $('input[title!=""], textarea[title!=""]').hint();
     
-    /*
-    if (navigator.userAgent.indexOf('iPhone') != -1) 
-    {
-        addEventListener("load", function() 
-        {
-            setTimeout(hideURLbar, 0);
-        }, false);
-    }
-
-    function hideURLbar() 
-    {
-        window.scrollTo(0, 1);
-    }
-    */
-
     $("#select-formula").change(function(){
         selected = $("option:selected", this).val();
 
