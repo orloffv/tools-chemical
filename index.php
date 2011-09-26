@@ -58,7 +58,7 @@
     
     </form>
     <small>
-        <p>This iPhone UI Framework kit is licenced under GNU Affero General Public License (<a href="http://www.gnu.org/licenses/agpl.html">GNU AGPL 3</a>)</p>
+        <p>App by <a target="_blank" href="http://orloffv.ru">orloffv</a><br>This iPhone UI Framework kit is licenced under GNU Affero General Public License (<a href="http://www.gnu.org/licenses/agpl.html">GNU AGPL 3</a>)</p>
     </small>
 
 </body>
