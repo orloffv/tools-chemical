@@ -39,26 +39,26 @@
 })(jQuery);
 
 $(document).ready(function() { 
-	$('input[title!=""], textarea[title!=""]').hint();
-	
-	/*
-	if (navigator.userAgent.indexOf('iPhone') != -1) 
-	{
-		addEventListener("load", function() 
-		{
-	    	setTimeout(hideURLbar, 0);
-	  	}, false);
-	}
+    $('input[title!=""], textarea[title!=""]').hint();
+    
+    /*
+    if (navigator.userAgent.indexOf('iPhone') != -1) 
+    {
+        addEventListener("load", function() 
+        {
+            setTimeout(hideURLbar, 0);
+        }, false);
+    }
 
-	function hideURLbar() 
-	{
-	  	window.scrollTo(0, 1);
-	}
-	*/
+    function hideURLbar() 
+    {
+        window.scrollTo(0, 1);
+    }
+    */
 
-	$("#select-formula").change(function(){
-		selected = $("option:selected", this).val();
+    $("#select-formula").change(function(){
+        selected = $("option:selected", this).val();
 
-		$("input[name=formula]").attr('value', selected);
-	});
+        $("input[name=formula]").attr('value', selected);
+    });
 });
