@@ -1,7 +1,7 @@
 # Chemical utils
 
-#[DEMO](http://chemical.orloffv.ru "Chemical DEMO")
-
+[DEMO](http://chemical.orloffv.ru "Chemical DEMO")
+---------------------------------------------------
 - Calculate Molar Mass
 	- H
 	- H2SO4
