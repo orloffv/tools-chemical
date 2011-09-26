@@ -136,7 +136,7 @@ class Chemical {
 		$this->elements[] = array($element, $count);
 	}
 
-	private function parseFormula($formula)
+	private function findElements($formula, $offset = 1)
 	{
 		$saved = '';
 		
@@ -158,7 +158,7 @@ class Chemical {
 				if ($saved)
 				{
 					//Если цифра - сохраняем с цифрой
-					$this->addElement($saved, $num);
+					$this->addElement($saved, $num * $offset);
 				}
 
 				$saved = '';
@@ -168,7 +168,7 @@ class Chemical {
 			{
 				if (!empty($saved)) 
 				{
-					$this->addElement($saved);
+					$this->addElement($saved, $offset);
 					$saved = '';
 				}
 				
@@ -180,7 +180,7 @@ class Chemical {
 			{
 				if (!empty($saved)) 
 				{
-					$this->addElement($saved);
+					$this->addElement($saved, $offset);
 					$saved = '';
 				}
 				
@@ -189,7 +189,7 @@ class Chemical {
 				//если совсем последний элемент, то сохраняем
 				if (!$next) 
 				{
-					$this->addElement($saved);
+					$this->addElement($saved, $offset);
 					$saved = '';
 				}
 			}
@@ -201,7 +201,7 @@ class Chemical {
 				{
 					if (!empty($saved)) 
 					{
-						$this->addElement($saved.$current);
+						$this->addElement($saved.$current, $offset);
 						$saved = '';
 					}
 				}
@@ -211,6 +211,67 @@ class Chemical {
 				}
 				
 			}
+		}
+	}
+
+	private function parseFormula($formula)
+	{
+		$saved = '';
+		$skip = 0;
+		for ($i=0; $i<strlen($formula); $i++)
+		{
+			$current = $formula[$i];
+
+			if ($current == '(')
+			{
+				if ($saved)
+				{
+					$this->findElements($saved);
+				}
+
+				$saved = '';
+			}
+			else if ($current == ')')
+			{
+				$next = (isset($formula[$i+1])) ? $formula[$i+1] : FALSE;
+				$nextNext = (isset($formula[$i+2])) ? $formula[$i+2] : FALSE;
+
+				$num = 1;
+
+				if ($next)
+				{
+					if (is_numeric($next))
+					{
+						$num = $next;
+						$skip = 1;
+
+						if ($nextNext AND is_numeric($nextNext))
+						{
+							$num .= $next;
+							$skip = 2;
+						}
+					}
+				}
+					
+				$this->findElements($saved, $num);		
+				$saved = '';
+			}
+			else
+			{
+				if ( ! $skip)
+				{
+					$saved .= $current;	
+				}
+				else
+				{
+					$skip--;
+				}			
+			}
+		}
+		
+		if ($saved)
+		{
+			$this->findElements($saved);	
 		}
 	}
 	

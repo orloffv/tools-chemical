@@ -61,5 +61,20 @@ class ChemicalTest extends PHPUnit_Framework_TestCase
         $result = $this->mendeleevElements['H']*2;
         $this->assertEquals($result, $chemical->getMolarMass());
     }
+
+    public function testWithBracketsInFormula()
+    {
+        $chemical = new Chemical('(H2)2');
+        $result = $this->mendeleevElements['H']*4;
+        $this->assertEquals($result, $chemical->getMolarMass());
+
+        $chemical = new Chemical('(H2SO4)2H2');
+        $result = $this->mendeleevElements['H']*6 + $this->mendeleevElements['S'] * 2 + $this->mendeleevElements['O'] * 8;
+        $this->assertEquals($result, $chemical->getMolarMass());
+
+        $chemical = new Chemical('Mg3(H2SO4)2H2');
+        $result = $this->mendeleevElements['Mg']*3 + $this->mendeleevElements['H']*6 + $this->mendeleevElements['S'] * 2 + $this->mendeleevElements['O'] * 8;
+        $this->assertEquals($result, $chemical->getMolarMass());
+    }
 }
 ?>
