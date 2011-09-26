@@ -50,5 +50,16 @@ class ChemicalTest extends PHPUnit_Framework_TestCase
 
         $this->assertEquals($data['result'], $chemical->getMolarMass());
     }
+
+    public function testWithWhitespaceInFormula()
+    {
+        $chemical = new Chemical('H 2');
+        $result = $this->mendeleevElements['H']*2;
+        $this->assertEquals($result, $chemical->getMolarMass());
+
+        $chemical = new Chemical(' H  2 ');
+        $result = $this->mendeleevElements['H']*2;
+        $this->assertEquals($result, $chemical->getMolarMass());
+    }
 }
 ?>

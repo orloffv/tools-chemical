@@ -40,7 +40,7 @@
 			</select>
 		</li>
 		<li>
-			<input type="text" name="formula" title="Формула" value="<?=isset($_POST['formula']) ? $_POST['formula'] : ''?>"/>
+			<input type="url" name="formula" title="Формула" value="<?=isset($_POST['formula']) ? $_POST['formula'] : ''?>"/>
 		</li>
 		<li>
 			<input type="number" name="x" title="Объем" value="<?=isset($_POST['x']) ? $_POST['x'] : ''?>"/>

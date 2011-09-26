@@ -121,8 +121,8 @@ class Chemical {
 	{
 		if ( ! is_null($formula))
 		{
-			$this->formula = trim($formula);
-			$this->parseFormula($formula);	
+			$this->formula = $this->clear($formula);
+			$this->parseFormula($this->formula);	
 		}
 	}
 	
@@ -236,6 +236,15 @@ class Chemical {
 	private function isLower ($string)
 	{
 	    return($string === strtolower($string) ? true : false);
+	}
+
+	private function clear($string)
+	{
+		$string = trim($string);
+		$string = strip_tags($string);
+		$string = preg_replace('/\s+/', '', $string);
+
+		return $string;
 	}
 }
 ?>
