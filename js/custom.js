@@ -61,7 +61,19 @@ $(document).ready(function() {
     {
         $form = $(this).closest('form');
         
-        $form.submit();
+        clear_form_nametitles($form, true);
+        
+        var data = {
+            'formula' : $('input[name=formula]', $form).val(),
+            'x' : $('input[name=x]', $form).val(),
+            'y' : $('input[name=y]', $form).val(),
+            'z' : $('input[name=z]', $form).val()
+        };
+
+        $.get('app.php?ajax', data, function(result)
+        {
+           $(".ajax-data").html(result);
+        });
 
         return false;
     });

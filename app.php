@@ -31,6 +31,25 @@ if (isset($_REQUEST['formula']))
     }
 }
 
+if (isset($_REQUEST['ajax']))
+{
+    if ($molarMass)
+    {
+        echo "<li>
+                <span>Молекулярная масса:</span>
+                <span>{$molarMass}</span>
+            </li>";
+    }
+
+    if ($massa)
+    {
+        echo "<li>
+                <span>Масса:</span>
+                <span>{$massa}</span>
+            </li>";
+    }
+}
+
 $selectFormula = array
 (
     'глюкоза'               => 'C6H12O6',

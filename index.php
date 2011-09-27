@@ -16,7 +16,7 @@
     <h1>Калькулятор</h1>
 
     <form method="GET" novalidate="novalidate">
-    <ul>
+    <ul class="ajax-data">
         <?php if ($molarMass):?>
         <li>
             <span>Молекулярная масса:</span>
