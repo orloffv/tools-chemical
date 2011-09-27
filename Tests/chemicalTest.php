@@ -1,5 +1,5 @@
 <?php
-require_once 'chemical.php';
+require_once ('src/chemical.php');
 
 class ChemicalTest extends PHPUnit_Framework_TestCase
 {

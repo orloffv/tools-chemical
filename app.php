@@ -11,7 +11,7 @@ if (isset($_REQUEST['formula']))
     //если формула
     else
     {
-        include('chemical.php');
+        require_once ('src/chemical.php');
 
         $chemical = new Chemical($_REQUEST['formula']);    
         $molarMass = $chemical->getMolarMass(); 
