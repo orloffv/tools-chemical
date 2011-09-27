@@ -52,9 +52,7 @@
             <input type="number" name="z" title="z" value="<?=isset($_REQUEST['z']) ? $_REQUEST['z'] : ''?>"/>
         </li>
     </ul>
-    <p>
-        <input type="submit" class="green button" value="Отправить">
-    </p>
+    <p><a href="#" id="submit" class="green button">Отправить</a></p>
     
     </form>
     <small>

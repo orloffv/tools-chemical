@@ -1,22 +1,29 @@
 (function($) {
-    $.fn.hint = function() {
+    $.fn.hint = function() 
+    {
         $(this).closest('form').submit(function() 
         {
             clear_form_nametitles($(this), true);
         });
         
-        return $(this).each(function (){
+        return $(this).each(function ()
+        {
             var t = $(this);
             var title = t.attr('title');
-            if (title) {
-                t.blur(function (){
-                    if (t.val() == '') {
+            if (title) 
+            {
+                t.blur(function ()
+                {
+                    if (t.val() == '') 
+                    {
                         t.val(title);
                         t.addClass('blur');
                     }
                 });
-                t.focus(function (){
-                    if (t.val() == title){
+                t.focus(function ()
+                {
+                    if (t.val() == title)
+                    {
                         t.val('');
                         t.removeClass('blur');
                     }
@@ -49,8 +56,18 @@
 
 $(document).ready(function() { 
     $('input[title!=""], textarea[title!=""]').hint();
+
+    $("#submit").click(function()
+    {
+        $form = $(this).closest('form');
+        
+        $form.submit();
+
+        return false;
+    });
     
-    $("#select-formula").change(function(){
+    $("#select-formula").change(function()
+    {
         selected = $("option:selected", this).val();
 
         $("input[name=formula]").attr('value', selected);
