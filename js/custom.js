@@ -3,7 +3,24 @@ $(document).ready(function() {
     {
         $form = $(this).closest('form');
         
+        $('input', $form).each(function()
+        {
+            if ( ! $(this).val())
+            {
+                $(this).attr('name', '');
+            }
+        });
+
         $form.submit();
+
+        return false;
+    });
+
+    $("#clear").click(function()
+    {
+        $form = $(this).closest('form');
+        
+        $('input', $form).val('');
 
         return false;
     });

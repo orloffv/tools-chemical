@@ -53,6 +53,7 @@
         </li>
     </ul>
     <p><a href="#" id="submit" class="green button">Отправить</a></p>
+    <p><a href="#" id="clear" class="red button">Очистить</a></p>
     
     </form>
     <small>
