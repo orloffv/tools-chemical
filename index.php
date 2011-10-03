@@ -40,16 +40,16 @@
             </select>
         </li>
         <li>
-            <input type="url" name="formula" title="Формула" value="<?=isset($_REQUEST['formula']) ? $_REQUEST['formula'] : ''?>"/>
+            <input type="url" name="formula" placeholder="Формула" title="Формула" value="<?=isset($_REQUEST['formula']) ? $_REQUEST['formula'] : ''?>"/>
         </li>
         <li>
-            <input type="number" name="x" title="Объем" value="<?=isset($_REQUEST['x']) ? $_REQUEST['x'] : ''?>"/>
+            <input type="number" name="x" placeholder="Объем" title="Объем" value="<?=isset($_REQUEST['x']) ? $_REQUEST['x'] : ''?>"/>
         </li>
         <li>
-            <input type="number" name="y" title="N/M" value="<?=isset($_REQUEST['y']) ? $_REQUEST['y'] : ''?>"/>
+            <input type="number" name="y" placeholder="N/M" title="N/M" value="<?=isset($_REQUEST['y']) ? $_REQUEST['y'] : ''?>"/>
         </li>
         <li>
-            <input type="number" name="z" title="z" value="<?=isset($_REQUEST['z']) ? $_REQUEST['z'] : ''?>"/>
+            <input type="number" name="z" placeholder="z" title="z" value="<?=isset($_REQUEST['z']) ? $_REQUEST['z'] : ''?>"/>
         </li>
     </ul>
     <p><a href="#" id="submit" class="green button">Отправить</a></p>
