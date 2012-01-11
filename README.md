@@ -1,6 +1,5 @@
 # Chemical utils
-
-{<img src="https://secure.travis-ci.org/orloffv/tools-chemical.png" />}[http://travis-ci.org/orloffv/tools-chemical]
+[![Build Status](https://secure.travis-ci.org/orloffv/tools-chemical.png)](http://travis-ci.org/orloffv/tools-chemical)
 
 [DEMO](http://chemical.orloffv.ru "Chemical DEMO")
 ---------------------------------------------------
