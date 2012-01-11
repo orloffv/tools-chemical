@@ -1,5 +1,7 @@
 # Chemical utils
 
+{<img src="https://secure.travis-ci.org/orloffv/tools-chemical.png" />}[http://travis-ci.org/orloffv/tools-chemical]
+
 [DEMO](http://chemical.orloffv.ru "Chemical DEMO")
 ---------------------------------------------------
 - Calculate Molar Mass
